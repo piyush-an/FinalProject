@@ -19,8 +19,8 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
-    
-    public WorkRequest(){
+
+    public WorkRequest() {
         requestDate = new Date();
     }
 
@@ -71,4 +71,10 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+
+    @Override
+    public String toString() {
+        return this.message;
+    }
+
 }
