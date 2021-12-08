@@ -12,6 +12,20 @@ public class Employee {
     
     private String name;
     private int id;
+    
+
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Employee.count = count;
+    }
+    
+    
+    
+   
+    
     private static int count = 1;
 
     public Employee() {

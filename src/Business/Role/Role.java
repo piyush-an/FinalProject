@@ -4,10 +4,14 @@
  */
 package Business.Role;
 
+import Business.Person.DonorDirectory;
 import Business.EcoSystem;
-
-import Business.Organization;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organ.Organ;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -17,11 +21,13 @@ import javax.swing.JPanel;
 public abstract class Role {
     
     public enum RoleType{
-        RestaurantAdmin("RestaurantAdmin"),
-        Customer("Customer"),
-        DeliveryMan("Delivery"),
-        SysAdmin("Sysadmin");
-        
+        Admin("Admin"),
+        Doctor("Doctor"),
+        LabAssistant("Lab Assistant"),
+        //LabAssistant("Another Lab Assistant");
+       MedicalDirector("Medical Director"),
+       EventOrganizer("Event Organizer"),
+        Patient("Patient");
         private String value;
         private RoleType(String value){
             this.value = value;
@@ -38,8 +44,12 @@ public abstract class Role {
     }
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
-            UserAccount account,  
-            EcoSystem business);
+            UserAccount account, 
+            Organization organization, 
+            Enterprise enterprise, 
+            EcoSystem business,
+            Network network, 
+            DonorDirectory donorDirectory);
 
     @Override
     public String toString() {

@@ -4,7 +4,7 @@
  */
 package userinterface;
 
-import Business.EcoSystem;
+import Business.EcoSystem1;
 import Business.DB4OUtil.DB4OUtil;
 
 import Business.Organization;
@@ -22,7 +22,7 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
-    private EcoSystem system;
+    private EcoSystem1 system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     public MainJFrame() {
