@@ -4,7 +4,7 @@
  */
 package userinterface.CustomerRole;
 
-import Business.EcoSystem;
+import Business.EcoSystem1;
 import Business.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;

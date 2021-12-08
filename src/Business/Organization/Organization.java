@@ -1,8 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business;
+package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author raunak
+ * @author Bhabani
  */
 public abstract class Organization {
 
@@ -24,11 +25,7 @@ public abstract class Organization {
     private static int counter=0;
     
     public enum Type{
-        RestaurantAdmin("RestaurantAdmin"),
-        Customer("Customer"),
-        DeliveryMan("Delivery"),
-        SysAdmin("Sysadmin");
-        
+        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"),OrganTissueDonationOrganization("Organ Tissue Donation Organization "),DonorOrganization("Donor Organization"),AwarnessEventManagementOrganization("AwarnessEventManagementOrganization"),Patient("Patient Organization");
         private String value;
         private Type(String value) {
             this.value = value;
@@ -46,9 +43,7 @@ public abstract class Organization {
         organizationID = counter;
         ++counter;
     }
-    public Organization(){
-        
-    }
+
     public abstract ArrayList<Role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {
