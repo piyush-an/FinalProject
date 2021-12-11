@@ -27,7 +27,13 @@ public abstract class Role {
         //LabAssistant("Another Lab Assistant");
        MedicalDirector("Medical Director"),
        EventOrganizer("Event Organizer"),
-        Patient("Patient");
+       CampOrganizer("Camp Organizer"),
+        //      Patient("Patient");
+       //       Piyush - Added
+       Patient("Patient"),
+       Counselor("Counselor"),
+       LegalAdvisor("Legal Advisor");
+       
         private String value;
         private RoleType(String value){
             this.value = value;
@@ -43,7 +49,7 @@ public abstract class Role {
         }
     }
     
-    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
+public abstract JPanel createWorkArea(JPanel userProcessContainer, 
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 

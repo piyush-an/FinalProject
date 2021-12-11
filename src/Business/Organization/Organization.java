@@ -22,10 +22,21 @@ public abstract class Organization {
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
+    private String typeof;
     private static int counter=0;
     
     public enum Type{
-        Admin("Admin Organization"), Doctor("Doctor Organization"), Lab("Lab Organization"),OrganTissueDonationOrganization("Organ Tissue Donation Organization "),DonorOrganization("Donor Organization"),AwarnessEventManagementOrganization("AwarnessEventManagementOrganization"),Patient("Patient Organization");
+        Admin("Admin Organization"), 
+        Doctor("Doctor Organization"), 
+        Lab("Lab Organization"),
+        OrganTissueDonationOrganization("Organ Tissue Donation Organization "),
+        DonorOrganization("Donor Organization"),
+        AwarnessEventManagementOrganization("AwarnessEventManagementOrganization"),
+        Patient("Patient Organization"),
+        EmotionalOrganization("Emotional Organization"),
+        HealthCampOrganization("Health Camp Organization"),
+        LegalOrganization("Legal Organization");
+        
         private String value;
         private Type(String value) {
             this.value = value;
@@ -40,11 +51,20 @@ public abstract class Organization {
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
-        organizationID = counter;
-        ++counter;
+//        this.organizationID = organizationID+1;
+//        organizationID = newID;
+//        ++counter;
     }
 
     public abstract ArrayList<Role> getSupportedRole();
+
+    public String getTypeof() {
+        return typeof;
+    }
+
+    public void setTypeof(String typeof) {
+        this.typeof = typeof;
+    }
     
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
@@ -52,6 +72,10 @@ public abstract class Organization {
 
     public int getOrganizationID() {
         return organizationID;
+    }
+
+    public void setOrganizationID(int organizationID) {
+        this.organizationID = organizationID;
     }
 
     public EmployeeDirectory getEmployeeDirectory() {
@@ -73,11 +97,11 @@ public abstract class Organization {
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
-
+    
     @Override
     public String toString() {
-        return name;
+    return name;
     }
-    
+ 
     
 }

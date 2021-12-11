@@ -22,20 +22,22 @@ public class Employee {
         Employee.count = count;
     }
     
-    
-    
-   
-    
+
     private static int count = 1;
 
-    public Employee() {
-        id = count;
-        count++;
+    public Employee(String name, int newID) {
+        this.name = name;
+        this.id = newID;
     }
 
     public int getId() {
         return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public void setName(String name) {
         this.name = name;

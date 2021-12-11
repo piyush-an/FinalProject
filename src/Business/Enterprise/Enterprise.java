@@ -24,11 +24,9 @@ public abstract class Enterprise extends Organization{
     public enum EnterpriseType{
         Hospital("Hospital"),
         OrganBank("Organ Bank"),
-        AwarenessCamp("Awareness Camp");
-        
-       
-       
-        
+        AwarenessCamp("Awareness Camp"),
+        DonorFamilySupport("Donor Family Support");
+
         private String value;
         
         private EnterpriseType(String value){
@@ -56,4 +54,10 @@ public abstract class Enterprise extends Organization{
         this.enterpriseType=type;
         organizationDirectory=new OrganizationDirectory();
     }
+    
+//    @Override
+//    public String toString(){
+//        return enterpriseType;
+//    }
+    
 }

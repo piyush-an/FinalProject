@@ -63,6 +63,13 @@ public class EcoSystem extends Organization{
         return network;
     }
     
+    public boolean removeNetwork(Network uNetwork){
+        if(networkList.size() > 1){
+        return networkList.remove(uNetwork);
+        }
+        return false;
+    }
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList=new ArrayList<Role>();
