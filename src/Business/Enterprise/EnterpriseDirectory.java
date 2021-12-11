@@ -37,13 +37,16 @@ public class EnterpriseDirectory {
         else if (type==Enterprise.EnterpriseType.OrganBank){
             enterprise = new OrganBankEnterprise(name);
             enterpriseList.add(enterprise);
-            
-            
+
         }
         else if(type==Enterprise.EnterpriseType.AwarenessCamp){
             enterprise = new AwarenessCamp(name);
             enterpriseList.add(enterprise);
-            
+
+        } else if (type == Enterprise.EnterpriseType.DonorFamilySupport) {
+            enterprise = new DonorFamilySupport(name);
+            enterpriseList.add(enterprise);
+
         }
         return enterprise;
     }

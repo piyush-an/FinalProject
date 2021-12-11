@@ -14,16 +14,15 @@ import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.LabAssistantRole.LabAssistantWorkAreaJPanel;
 import userinterface.MedicalDirectorRole.MedicalDirectorWorkAreaJPanel;
-import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
- * @author krish9
+ * @author piyush
  */
 public class MedicalDirector extends Role {
    @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network, DonorDirectory donorDirectory) {
-        return new MedicalDirectorWorkAreaJPanel(userProcessContainer, account, organization, business,donorDirectory);
+        return new MedicalDirectorWorkAreaJPanel(userProcessContainer, account, organization, business,donorDirectory, network);
     }
     
 }

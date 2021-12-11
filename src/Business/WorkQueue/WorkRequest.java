@@ -19,6 +19,7 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private int workID;
 
     public WorkRequest() {
         requestDate = new Date();
@@ -71,10 +72,18 @@ public abstract class WorkRequest {
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
     }
+    
+    public int getWorkID() {
+        return workID;
+    }
 
+    public void setWorkID(int workID) {
+        this.workID = workID;
+    }
+    
     @Override
-    public String toString() {
-        return this.message;
+    public String toString(){
+        return String.valueOf(workID);
     }
 
 }

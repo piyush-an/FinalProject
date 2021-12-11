@@ -15,7 +15,7 @@ import Business.Person.DonorDirectory;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 //import userinterface.DoctorRole.DoctorWorkAreaJPanel;
-//import userinterface.PatientRole.PatientWorkAreaJPanel;
+import userinterface.PatientRole.PatientWorkAreaJPanel;
 
 /**
  *

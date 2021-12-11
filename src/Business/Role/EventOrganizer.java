@@ -18,7 +18,7 @@ import userinterface.EventOrganizerRole.EventOrganizerWorkAreaJPanel;
 
 /**
  *
- * @author krish9
+ * @author piyush
  */
 public class EventOrganizer extends Role{
      @Override

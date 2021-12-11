@@ -4,11 +4,13 @@
  */
 package Business.Role;
 
-import Business.EcoSystem1;
-
-import Business.Organization;
+import Business.Person.DonorDirectory;
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import userinterface.RestaurantAdminRole.AdminWorkAreaJPanel;
+import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**

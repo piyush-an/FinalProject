@@ -22,9 +22,11 @@ public class EmployeeDirectory {
         return employeeList;
     }
     
-    public Employee createEmployee(String name){
-        Employee employee = new Employee();
-        employee.setName(name);
+    public Employee createEmployee(String name, int newID){
+        Employee employee = new Employee(name, newID+1 );
+//        employee.setName(name);
+//        employee.setId(newID+1);
+        
         employeeList.add(employee);
         return employee;
     }
