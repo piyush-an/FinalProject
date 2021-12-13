@@ -59,7 +59,7 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
         profileName.setText(userAccount.getUsername());
         quals.setText(userAccount.getQualifications());
         populateTable();
-        profilepic();
+        //profilepic();
         upcomingevents();
     }
 
@@ -92,21 +92,21 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
 
     }
 
-    public void profilepic() {
-        ImageIcon image_path = new ImageIcon(userAccount.getProfile());
-        profilePicture.setIcon(image_path);
-
-    }
+//    public void profilepic() {
+//        ImageIcon image_path = new ImageIcon(userAccount.getProfile());
+//        profilePicture.setIcon(image_path);
+//
+//    }
 
     public void pushwork() {
         for (Network network : system.getNetworkList()) {
 
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization organizationd : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    System.out.println("checking for doctor organization" + organizationd);
+//                    System.out.println("checking for doctor organization" + organizationd);
                     if (organizationd instanceof DoctorOrganization) {
                         //organization.getWorkQueue().getWorkRequestList();
-                        System.out.println("Inside pushwork");
+//                        System.out.println("Inside pushwork");
 
                         for (WorkRequest request : organizationd.getWorkQueue().getWorkRequestList()) {
 
@@ -131,7 +131,7 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         // System.out.print("Testing"+this.organTissueDonationOrganization);
         for (WorkRequest request : organTissueDonationOrganization.getWorkQueue().getWorkRequestList()) {
-            System.err.print("Inside workloop meddir" + request);
+//            System.err.print("Inside workloop meddir" + request);
             Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getSender().getEmployee().getName();
@@ -168,7 +168,6 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
         refreshJButton = new javax.swing.JButton();
         assignJButton = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
-        profilePicture = new javax.swing.JLabel();
         profileName = new javax.swing.JLabel();
         quals = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -178,45 +177,78 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         workRequestJTable = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 65, 96));
         jLabel1.setText("This is Director work area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 300, -1));
 
+        refreshJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        refreshJButton.setForeground(new java.awt.Color(4, 65, 96));
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshJButtonActionPerformed(evt);
             }
         });
+        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 140, -1));
 
+        assignJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        assignJButton.setForeground(new java.awt.Color(4, 65, 96));
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignJButtonActionPerformed(evt);
             }
         });
+        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 180, -1));
 
+        processJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        processJButton.setForeground(new java.awt.Color(4, 65, 96));
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processJButtonActionPerformed(evt);
             }
         });
+        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 270, 140, -1));
 
-        profilePicture.setText("User Profile Picture");
-
+        profileName.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        profileName.setForeground(new java.awt.Color(4, 65, 96));
         profileName.setText("UserName");
+        add(profileName, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 180, -1));
 
+        quals.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        quals.setForeground(new java.awt.Color(4, 65, 96));
         quals.setText("quals");
+        add(quals, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 150, -1));
 
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(4, 65, 96));
         jLabel6.setText("Upcoming Events");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 200, -1));
 
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(4, 65, 96));
         jLabel7.setText("No Upcoming Events");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 220, -1));
 
+        jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(4, 65, 96));
         jLabel8.setText("No Upcoming Events");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 220, -1));
 
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(4, 65, 96));
         jLabel9.setText("No Upcoming Events");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 220, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 35, 542));
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -246,75 +278,10 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(profileName)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel6)
-                            .addComponent(quals, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(39, 39, 39)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(refreshJButton)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(assignJButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(processJButton)))))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(profileName)
-                                .addGap(18, 18, 18)
-                                .addComponent(quals)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel6)
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9)
-                                .addGap(0, 93, Short.MAX_VALUE))
-                            .addComponent(jSeparator1))
-                        .addGap(76, 76, 76))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(refreshJButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(processJButton)
-                            .addComponent(assignJButton))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(232, 80, 650, 180));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/MedicalDirectorRole/MD.png"))); // NOI18N
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 265, 580, 410));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshJButtonActionPerformed
@@ -330,7 +297,7 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
-           if(request.getStatus().equalsIgnoreCase("sent")){
+           if(request.getStatus().equalsIgnoreCase("New Request")){
              request.setReceiver(userAccount);
         request.setStatus("Pending");
         populateTable();
@@ -348,36 +315,31 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "No Row Selected, Please select one");
             return;
         }
 
         TrailWorkRequest request = (TrailWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
-       // if(request.getReceiver().toString().equalsIgnoreCase(userAccount.toString())){
-            request.setStatus("Processing");
-            request.setReceiver(userAccount);
-          
-       // }
-        //else{
-           // JOptionPane.showMessageDialog(null, "Please Assign the request first");
-          //  return;
-        //}
         
 
-//        OrganWorkRequest request = (OrganWorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-//        
-//     
-//        request.setStatus("Processing");
+        if(request.getReceiver().getUsername().equals(userAccount.getUsername()) && !(request.getStatus().equalsIgnoreCase("Match Found")) ){
+            request.setStatus("Processing");
+            request.setReceiver(userAccount);
         DirectorProcessWorkRequesJPanel directorProcessWorkRequestJPanel = new DirectorProcessWorkRequesJPanel(userProcessContainer, request, donorDirectory, business, network, userAccount);
         userProcessContainer.add("processWorkRequestJPanel", directorProcessWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Request not assigned to you");
+        }
     }//GEN-LAST:event_processJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton assignJButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -386,7 +348,6 @@ public class MedicalDirectorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton processJButton;
     private javax.swing.JLabel profileName;
-    private javax.swing.JLabel profilePicture;
     private javax.swing.JLabel quals;
     private javax.swing.JButton refreshJButton;
     private javax.swing.JTable workRequestJTable;

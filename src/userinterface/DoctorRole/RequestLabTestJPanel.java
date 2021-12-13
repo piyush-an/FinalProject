@@ -63,54 +63,87 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         fullBlood = new javax.swing.JCheckBox();
         othersJTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(null);
 
+        requestTestJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        requestTestJButton.setForeground(new java.awt.Color(4, 65, 96));
         requestTestJButton.setText("Request Tests");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
             }
         });
-        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
-        add(messageJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 89, -1));
+        add(requestTestJButton);
+        requestTestJButton.setBounds(400, 250, 173, 29);
+        add(messageJTextField);
+        messageJTextField.setBounds(400, 200, 170, 23);
 
-        backJButton.setText("<<Back");
+        backJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(4, 65, 96));
+        backJButton.setText("Return");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        add(backJButton);
+        backJButton.setBounds(730, 20, 99, 29);
 
+        valueLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        valueLabel.setForeground(new java.awt.Color(0, 51, 51));
         valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 130, -1));
+        add(valueLabel);
+        valueLabel.setBounds(190, 20, 160, 30);
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 120, 30));
+        enterpriseLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        enterpriseLabel.setForeground(new java.awt.Color(0, 51, 51));
+        enterpriseLabel.setText("Enterprise :");
+        add(enterpriseLabel);
+        enterpriseLabel.setBounds(60, 20, 150, 30);
 
-        jLabel2.setText("Others");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel2.setText("Others Test:");
+        add(jLabel2);
+        jLabel2.setBounds(250, 150, 130, 30);
 
+        vitamins.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        vitamins.setForeground(new java.awt.Color(0, 51, 51));
         vitamins.setText("Vitamins Tests");
-        add(vitamins, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 90, -1, -1));
+        add(vitamins);
+        vitamins.setBounds(550, 90, 220, 27);
 
+        glucose.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        glucose.setForeground(new java.awt.Color(0, 51, 51));
         glucose.setText("Blood Glucose Test");
-        add(glucose, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
+        add(glucose);
+        glucose.setBounds(70, 90, 250, 27);
 
+        fullBlood.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        fullBlood.setForeground(new java.awt.Color(0, 51, 51));
         fullBlood.setText("Full Blood Count");
-        add(fullBlood, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
+        add(fullBlood);
+        fullBlood.setBounds(327, 90, 210, 27);
 
         othersJTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 othersJTextFieldActionPerformed(evt);
             }
         });
-        add(othersJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 80, -1));
+        add(othersJTextField);
+        othersJTextField.setBounds(400, 150, 170, 23);
 
-        jLabel4.setText("Message");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel4.setText("Message:");
+        add(jLabel4);
+        jLabel4.setBounds(280, 200, 100, 23);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/DoctorRole/reqT.png"))); // NOI18N
+        add(jLabel3);
+        jLabel3.setBounds(0, -5, 860, 710);
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
@@ -127,7 +160,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
             request.getTests().add("Full Blood Count Test");
         }
         if (vitamins.isSelected()) {
-            request.getTests().add("Vitamins Tests");
+            request.getTests().add("Vitamins Test");
 
         }
         if (othersJTextField.getText().isEmpty()) {
@@ -188,6 +221,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
         dwjp.populateRequestTable();
+        dwjp.resetFields();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 
@@ -203,6 +237,7 @@ public class RequestLabTestJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox fullBlood;
     private javax.swing.JCheckBox glucose;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField messageJTextField;
     private javax.swing.JTextField othersJTextField;

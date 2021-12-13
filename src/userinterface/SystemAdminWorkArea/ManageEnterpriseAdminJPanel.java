@@ -13,9 +13,9 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -44,10 +44,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }
 
     public boolean isFirstnameValid(String text) {
-
         return text.matches("^([A-Za-z]+)(\\s[A-Za-z]+)*\\s?$");
-        
+
     }
+
     private boolean usernamePatternCorrect(String username) {
         Pattern pattern = Pattern.compile("(?!_).*[A-Za-z0-9._]+@[A-Za-z0-9._]+\\.[A-Za-z]{2,4}");
         Matcher matcher = pattern.matcher(username);
@@ -56,12 +56,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             System.out.println("Special characters are not allowed other than _, @");
             return false;
         } else {
-           
-            for(String s:userstring){
-                if(s.equalsIgnoreCase(username)){
-                    // System.out.println("Username accepted");
-                     JOptionPane.showMessageDialog(null, "Username exists please take another username");
-                     return false;
+            for (String s : userstring) {
+                if (s.equalsIgnoreCase(username)) {
+                    JOptionPane.showMessageDialog(null, "Username exists please take another username");
+                    return false;
                 }
             }
             return true;
@@ -76,10 +74,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[3];
-                    row[0] = enterprise.getName();
+                    row[0] = enterprise;
                     row[1] = network.getName();
                     row[2] = userAccount;
-
                     model.addRow(row);
                 }
             }
@@ -100,6 +97,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
             enterpriseJComboBox.addItem(enterprise);
         }
+
+    }
+
+    public void resetFields() {
+
+        networkJComboBox.setSelectedIndex(-1);
+        enterpriseJComboBox.setSelectedIndex(-1);
+        usernameJTextField.setText("");
+        passwordJPasswordField.setText("");
+        nameJTextField.setText("");
 
     }
 
@@ -130,6 +137,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,141 +163,93 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 1050, 250));
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(14, 14, 203));
         jLabel1.setText("Network:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, 80, 30));
 
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 networkJComboBoxActionPerformed(evt);
             }
         });
+        add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 180, 40));
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(14, 14, 203));
         jLabel2.setText("Username:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 90, 30));
+        add(usernameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 180, 40));
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(14, 14, 203));
         jLabel3.setText("Enterprise:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 450, 90, 30));
 
+        add(enterpriseJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 180, 40));
+
+        submitJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        submitJButton.setForeground(new java.awt.Color(4, 65, 96));
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 640, 130, -1));
 
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(14, 14, 203));
         jLabel4.setText("Password:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 550, 90, 30));
+        add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 590, 180, 40));
 
+        jLabel5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(14, 14, 203));
         jLabel5.setText("Name:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 600, -1, 30));
+        add(passwordJPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 540, 180, 40));
 
+        backJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(4, 65, 96));
         backJButton.setText("HOME");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Monospaced", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("CREATE A ENTERPRISE ADMIN");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/SystemAdminWorkArea/EA.png"))); // NOI18N
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1110, 580));
 
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(14, 14, 203));
         jLabel7.setText("Existing Admin's");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         jLabel8.setText("Add a New Admin");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(4, 65, 96));
         jButton1.setText("DELETE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 80, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(backJButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton1))
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 792, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(usernameJTextField))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(passwordJPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                                            .addComponent(nameJTextField)))
-                                    .addComponent(submitJButton))))
-                        .addGap(0, 64, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(backJButton)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(submitJButton)
-                .addGap(34, 34, 34))
-        );
+        jLabel9.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(4, 65, 96));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("CREATE A ENTERPRISE ADMIN");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 1110, 44));
     }// </editor-fold>//GEN-END:initComponents
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
@@ -298,62 +261,63 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_networkJComboBoxActionPerformed
-    
-    
-    private boolean valPass(String password){
-       Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+
+    private boolean valPass(String password) {
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
         Matcher matcher = pattern.matcher(password);
         boolean bool = matcher.matches();
         if (!bool) {
             System.out.println("Special characters are not allowed other than _, @");
             return false;
         } else {
-           
-            for(String s:userstring){
-                if(s.equalsIgnoreCase(password)){
-                    // System.out.println("Username accepted");
-                     JOptionPane.showMessageDialog(null, "Username exists please take another username");
-                     return false;
+            for (String s : userstring) {
+                if (s.equalsIgnoreCase(password)) {
+                    JOptionPane.showMessageDialog(null, "Username exists please take another username");
+                    return false;
                 }
             }
             return true;
         }
     }
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        int f=0,n=0,p=0;
+        int f = 0, n = 0, p = 0;
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
         if (isFirstnameValid(name)) {
             name = name.trim();
-            f=1;
+            f = 1;
         } else {
             JOptionPane.showMessageDialog(null, "Name Field can only contain Alphabets");
             return;
         }
         if (usernamePatternCorrect(username)) {
-            n=1;
+            n = 1;
         } else {
             JOptionPane.showMessageDialog(null, "Please enter a valid email format");
             return;
         }
         if (valPass(password)) {
-            p=1;
+            p = 1;
         } else {
             JOptionPane.showMessageDialog(null, "Password should contain");
             return;
         }
-        if(n==1&&p==1&&f==1){
-            int newID = enterprise.getEmployeeDirectory().getEmployeeList().get(enterprise.getEmployeeDirectory().getEmployeeList().size()-1).getId();
-        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, newID);
-        
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
-        userstring.add(username);
-        populateTable();
+        if (n == 1 && p == 1 && f == 1) {
+            int newID;
+            try {
+                newID = enterprise.getEmployeeDirectory().getEmployeeList().get(enterprise.getEmployeeDirectory().getEmployeeList().size() - 1).getId();
+            } catch (Exception e) {
+                newID = 0;
+            }
+            Employee employee = enterprise.getEmployeeDirectory().createEmployee(name, newID);
+            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+            userstring.add(username);
+            JOptionPane.showMessageDialog(null, "User '" + name + "' Created");
+            resetFields();
+            populateTable();
         }
-
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -361,7 +325,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
-        sysAdminwjp.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
@@ -372,15 +335,19 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "No Row Selected, Please select one");
             return;
-        }
-        Enterprise enterprisetoDelete = (Enterprise) enterpriseJTable.getValueAt(selectedRow, 0);
-        UserAccount accounttoDelete = (UserAccount) enterpriseJTable.getValueAt(selectedRow, 2);
-        if(enterprisetoDelete.getUserAccountDirectory().getUserAccountList().size() > 1){
-            if(enterprisetoDelete.getUserAccountDirectory().getUserAccountList().remove(accounttoDelete)){
-                JOptionPane.showMessageDialog(null,"User Deleted");
-            }
         } else {
-            JOptionPane.showMessageDialog(null,"User could NOT be Delete");
+            JFrame frame = new JFrame("Swing Tester");
+            int result = JOptionPane.showConfirmDialog(frame, "Sure? You want to Delete?", "Delete Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+
+                Enterprise enterprisetoDelete = (Enterprise) enterpriseJTable.getValueAt(selectedRow, 0); // ISSUE2 : Enterprise in table is String and not object
+                UserAccount accounttoDelete = (UserAccount) enterpriseJTable.getValueAt(selectedRow, 2);
+                if (enterprisetoDelete.getUserAccountDirectory().getUserAccountList().remove(accounttoDelete)) {
+                    JOptionPane.showMessageDialog(null, "User '" + accounttoDelete.getUsername().toString() + "' Deleted");
+                } else {
+                    JOptionPane.showMessageDialog(null, "User '" + accounttoDelete.getUsername().toString() + "' could NOT be Delete");
+                }
+            }
         }
         populateTable();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -398,6 +365,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox networkJComboBox;

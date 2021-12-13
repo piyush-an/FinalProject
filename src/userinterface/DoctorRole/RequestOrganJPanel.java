@@ -97,98 +97,119 @@ public class RequestOrganJPanel extends javax.swing.JPanel {
         lblNameValue1 = new javax.swing.JLabel();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        lblName2 = new javax.swing.JLabel();
 
+        setLayout(null);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        requestTestJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        requestTestJButton.setForeground(new java.awt.Color(4, 65, 96));
         requestTestJButton.setText("Request Organ");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, -1, -1));
+        jPanel1.add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 190, -1));
 
-        jLabel1.setText("Organ Type");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel1.setText("Organ Type:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
-        backJButton.setText("<<Back");
+        backJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(4, 65, 96));
+        backJButton.setText("HOME");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
+        jPanel1.add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel2.setText("Blood Type");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 160, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel2.setText("Blood Type:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
-        jLabel3.setText("Severity");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel3.setText("Severity:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
+        organJComboBox.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        organJComboBox.setForeground(new java.awt.Color(4, 65, 96));
         organJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Heart", "Lungs", "Kidneys", "Liver", "Pancreas" }));
-        jPanel1.add(organJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, -1, -1));
+        organJComboBox.setSelectedIndex(-1);
+        jPanel1.add(organJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 100, 160, -1));
 
+        bloodGroupJComboBox.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        bloodGroupJComboBox.setForeground(new java.awt.Color(4, 65, 96));
         bloodGroupJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "B Positive", "B Negative", "A Positive", "A Negative", "O Positive", "O Negative" }));
+        bloodGroupJComboBox.setSelectedIndex(-1);
         bloodGroupJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bloodGroupJComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(bloodGroupJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
+        jPanel1.add(bloodGroupJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 160, -1));
 
+        severityJComboBox.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        severityJComboBox.setForeground(new java.awt.Color(4, 65, 96));
         severityJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "High", "Normal" }));
-        jPanel1.add(severityJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
+        severityJComboBox.setSelectedIndex(-1);
+        jPanel1.add(severityJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 160, -1));
 
+        lblAge.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblAge.setForeground(new java.awt.Color(0, 51, 51));
         lblAge.setText("Age:");
-        jPanel1.add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jPanel1.add(lblAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
+        lblAgeValue.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblAgeValue.setForeground(new java.awt.Color(0, 0, 0));
         lblAgeValue.setText("Age");
-        jPanel1.add(lblAgeValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 81, -1));
+        jPanel1.add(lblAgeValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 81, -1));
 
+        lblSexValue.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblSexValue.setForeground(new java.awt.Color(0, 0, 0));
         lblSexValue.setText("Sex");
-        jPanel1.add(lblSexValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 81, -1));
+        jPanel1.add(lblSexValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, 81, -1));
 
-        lblSex.setText("Sex");
-        jPanel1.add(lblSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+        lblSex.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblSex.setForeground(new java.awt.Color(0, 51, 51));
+        lblSex.setText("Sex:");
+        jPanel1.add(lblSex, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, -1));
 
-        lblName1.setText("Name");
-        jPanel1.add(lblName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        lblName1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblName1.setForeground(new java.awt.Color(0, 51, 51));
+        lblName1.setText("Name:");
+        jPanel1.add(lblName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
+        lblNameValue1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        lblNameValue1.setForeground(new java.awt.Color(0, 0, 0));
         lblNameValue1.setText("name");
-        jPanel1.add(lblNameValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 92, -1));
+        jPanel1.add(lblNameValue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 92, -1));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
+        add(jPanel1);
+        jPanel1.setBounds(82, 42, 632, 280);
 
+        enterpriseLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        enterpriseLabel.setForeground(new java.awt.Color(0, 51, 51));
+        enterpriseLabel.setText("Enterprise :");
+        add(enterpriseLabel);
+        enterpriseLabel.setBounds(90, 10, 120, 30);
+
+        valueLabel.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        valueLabel.setForeground(new java.awt.Color(0, 0, 0));
         valueLabel.setText("<value>");
+        add(valueLabel);
+        valueLabel.setBounds(220, 10, 130, 25);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(193, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueLabel))
-                .addGap(71, 71, 71)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(293, Short.MAX_VALUE))
-        );
+        lblName2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/DoctorRole/RO.png"))); // NOI18N
+        add(lblName2);
+        lblName2.setBounds(0, -5, 900, 710);
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
@@ -237,14 +258,18 @@ public class RequestOrganJPanel extends javax.swing.JPanel {
             PatientOrganization	+ 
             
              */
-            org.getWorkQueue().getWorkRequestList().add(organRequestWF);
+            
             try {
+//                org.getWorkQueue().getWorkRequestList().clear();
                 organRequestWF.setWorkID(org.getWorkQueue().getWorkRequestList().get(org.getWorkQueue().getWorkRequestList().size() - 1).getWorkID() + 1);
+//            organRequestWF.setWorkID(201);
             } catch (Exception e) {
                 organRequestWF.setWorkID(201);
             }
-            userAccount.getWorkQueue().getWorkRequestList().add(organRequestWF);
+            org.getWorkQueue().getWorkRequestList().add(organRequestWF);
+//            userAccount.getWorkQueue().getWorkRequestList().add(organRequestWF);
             JOptionPane.showMessageDialog(null, "Request Raised successfully !");
+            backJButtonActionPerformed(evt);
         } else {
             JOptionPane.showMessageDialog(null, "Request could not be raised !");
         }
@@ -258,7 +283,10 @@ public class RequestOrganJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         DoctorWorkAreaJPanel dwjp = (DoctorWorkAreaJPanel) component;
-        dwjp.populateRequestTable();
+//        dwjp.populateRequestTable();
+        dwjp.populateOrganRequestTable();
+//        dwjp.populateCampOrganizationJTable();
+dwjp.resetFields();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 
@@ -280,6 +308,7 @@ public class RequestOrganJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblAgeValue;
     private javax.swing.JLabel lblName1;
+    private javax.swing.JLabel lblName2;
     private javax.swing.JLabel lblNameValue1;
     private javax.swing.JLabel lblSex;
     private javax.swing.JLabel lblSexValue;

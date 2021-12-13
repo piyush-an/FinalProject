@@ -7,6 +7,8 @@ package userinterface.DoctorRole;
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.*;
+import static Business.Enterprise.Enterprise.EnterpriseType.Hospital;
+import static Business.Enterprise.Enterprise.EnterpriseType.OrganBank;
 import Business.Network.Network;
 import Business.Organization.AwarnessEventManagementOrganization;
 import Business.Organization.DoctorOrganization;
@@ -25,6 +27,10 @@ import com.db4o.User;
 import java.awt.CardLayout;
 import java.awt.Desktop;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+import java.text.SimpleDateFormat;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -62,10 +68,23 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         quals.setText(userAccount.getQualifications());
         populateRequestTable();
         populateOrganRequestTable();
-        profilepic();
+        //profilepic();
         upcomingevents();
         populatePatientComboBox(enterprise);
         populateCampOrganizationJTable();
+//        lblAgeValue.setVisible(false);
+//        lblAge.setVisible(false);
+//        lblName1.setVisible(false);
+//        lblNameValue1.setVisible(false);
+//        lblSexValue.setVisible(false);
+//        lblSex.setVisible(false);
+        resetFields();
+//        
+
+    }
+
+    public void resetFields() {
+        cboAvailablePatients.setSelectedIndex(-1);
         lblAgeValue.setVisible(false);
         lblAge.setVisible(false);
         lblName1.setVisible(false);
@@ -117,70 +136,131 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     }
 
-    public void profilepic() {
-        ImageIcon image_path = new ImageIcon(userAccount.getProfile());
-        profilePicture.setIcon(image_path);
-
-    }
+//    public void profilepic() {
+//        ImageIcon image_path = new ImageIcon(userAccount.getProfile());
+//        profilePicture.setIcon(image_path);
+//
+//    }
 
     public void populateOrganRequestTable() {
 
         DefaultTableModel model = (DefaultTableModel) organRequestJTable.getModel();
-        Organization org = null;
-        for (Organization organizationEach : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organizationEach instanceof OrganTissueDonationOrganization) {
-                org = organizationEach;
-                break;
-            }
-        }
-//        org.getWorkQueue().get
+        model.setRowCount(0);
+//        Organization org = null;
 
         try {
-            if (org.getWorkQueue().getWorkRequestList().isEmpty()) {
-                return;
-            }
-        } catch (Exception e) {
-            return;
-        }
-        for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
-            if (request instanceof TrailWorkRequest) {
-                Object[] row = new Object[5];
-                row[0] = request;
-                row[1] = ((TrailWorkRequest) request).getPatient_name();
-                row[2] = request.getStatus();
-                row[3] = request.getReceiver();
-                String result = ((TrailWorkRequest) request).getMatchResult();
+//            for (Network network : system.getNetworkList()) {
+
+//                HospitalEnterprise enterpriseloop1 = (HospitalEnterprise) network.getEnterpriseDirectory().getEnterpriseList().get(1);
+            for (Enterprise enterpriseloop : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (enterpriseloop.getEnterpriseType().equals(OrganBank)) {
+                    for (Organization org : enterpriseloop.getOrganizationDirectory().getOrganizationList()) {
+                        for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+                            if (request instanceof TrailWorkRequest) {
+                                Object[] row = new Object[5];
+                                row[0] = request;
+                                row[1] = ((TrailWorkRequest) request).getPatient_name();
+                                row[2] = request.getStatus();
+                                row[3] = request.getReceiver();
+                                row[4] = ((TrailWorkRequest) request).getOrgan();
+//                                String result = ((TrailWorkRequest) request).getMatchResult();
 //                row[4] = result == null ? "Waiting" : result;
-                model.addRow(row);
+                                model.addRow(row);
+                            }
+                        }
+                    }
+                }
             }
+
+        } catch (Exception e) {
+            // return;
         }
+
+//        for (Organization organizationEach : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//            if (organizationEach instanceof OrganTissueDonationOrganization) {
+//                org = organizationEach;
+//                break;
+//            }
+//        }
+////        org.getWorkQueue().get
+//
+//        try {
+//            if (org.getWorkQueue().getWorkRequestList().isEmpty()) {
+//                return;
+//            }
+//        } catch (Exception e) {
+//            return;
+//        }
+//        for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+//            if (request instanceof TrailWorkRequest) {
+//                Object[] row = new Object[5];
+//                row[0] = request;
+//                row[1] = ((TrailWorkRequest) request).getPatient_name();
+//                row[2] = request.getStatus();
+//                row[3] = request.getReceiver();
+//                String result = ((TrailWorkRequest) request).getMatchResult();
+////                row[4] = result == null ? "Waiting" : result;
+//                model.addRow(row);
+//            }
+//        }
     }
 
     public void populateCampOrganizationJTable() {
         DefaultTableModel model = (DefaultTableModel) CampOrganizationJTable.getModel();
+        model.setRowCount(0);
+
+        SimpleDateFormat datemMonth = new SimpleDateFormat("MMM dd, yyyy");
 
         try {
-            if (organization.getWorkQueue().getWorkRequestList().isEmpty()) {
-                return;
+//            for (Network network : system.getNetworkList()) {
+
+//                HospitalEnterprise enterpriseloop1 = (HospitalEnterprise) network.getEnterpriseDirectory().getEnterpriseList().get(1);
+            for (Enterprise enterpriseloop : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (enterpriseloop.getEnterpriseType().equals(Hospital)) {
+                    for (Organization org : enterpriseloop.getOrganizationDirectory().getOrganizationList()) {
+                        for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+                            if (request instanceof MedicalFieldCampWorkRequest) {
+                                Object[] row = new Object[7];
+                                row[0] = request;
+                                row[1] = ((MedicalFieldCampWorkRequest) request).getFieldCampName();
+                                row[2] = ((MedicalFieldCampWorkRequest) request).getVenue();
+                                row[3] = datemMonth.format(((MedicalFieldCampWorkRequest) request).getStartDate());
+                                row[4] = datemMonth.format(((MedicalFieldCampWorkRequest) request).getEndDate());
+                                row[5] = request.getStatus();
+                                row[6] = request.getReceiver();
+                                model.addRow(row);
+                            }
+                        }
+                    }
+                }
             }
+
         } catch (Exception e) {
-            return;
+            // return;
         }
-        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[7];
-            row[0] = request;
-            row[1] = ((MedicalFieldCampWorkRequest) request).getFieldCampName();
-            row[2] = ((MedicalFieldCampWorkRequest) request).getVenue();
-            row[3] = ((MedicalFieldCampWorkRequest) request).getStartDate();
-            row[4] = ((MedicalFieldCampWorkRequest) request).getEndDate();
-            row[5] = request.getStatus();
-            row[6] = request.getReceiver();
-            model.addRow(row);
-        }
+//        try {
+//            if (organization.getWorkQueue().getWorkRequestList().isEmpty()) {
+//                return;
+//            }
+//        } catch (Exception e) {
+//            return;
+//        }
+//        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()) {
+//            Object[] row = new Object[7];
+//            row[0] = request;
+//            row[1] = ((MedicalFieldCampWorkRequest) request).getFieldCampName();
+//            row[2] = ((MedicalFieldCampWorkRequest) request).getVenue();
+//            row[3] = ((MedicalFieldCampWorkRequest) request).getStartDate();
+//            row[4] = ((MedicalFieldCampWorkRequest) request).getEndDate();
+//            row[5] = request.getStatus();
+//            row[6] = request.getReceiver();
+//            model.addRow(row);
+//        }
     }
 
     public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        model.setRowCount(0);
 
         Organization org = null;
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
@@ -207,8 +287,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 row[2] = request.getStatus();
                 row[3] = request.getReceiver();
                 row[4] = request.getMessage();
-                String result = ((LabTestWorkRequest) request).getTestResult();
-                row[5] = result == null ? "Waiting" : result;
+                if (request.getStatus().equalsIgnoreCase("Completed")){
+                    row[5] = true ;
+                } else {
+                    row[5] = false ;
+                }
+//                String result = ((LabTestWorkRequest) request).getTestResult();
+//                row[5] = result == null ? "Waiting" : result;
                 model.addRow(row);
             }
         }
@@ -235,7 +320,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         organRequestJTable = new javax.swing.JTable();
         requestOrganJButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        profilePicture = new javax.swing.JLabel();
         profileName = new javax.swing.JLabel();
         quals = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -253,8 +337,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         CampOrganizationJTable = new javax.swing.JTable();
         btnAssign = new javax.swing.JButton();
-        btnAccept = new javax.swing.JButton();
-        btnDecline = new javax.swing.JButton();
+        lblPatient2 = new javax.swing.JLabel();
+        lblPatient4 = new javax.swing.JLabel();
+        lblPatient5 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -269,6 +354,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         ));
         jScrollPane3.setViewportView(jTable1);
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -278,10 +366,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -294,24 +382,42 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(226, 215, 860, 130);
+
+        requestTestJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        requestTestJButton.setForeground(new java.awt.Color(4, 65, 96));
         requestTestJButton.setText("Request Test");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
             }
         });
+        add(requestTestJButton);
+        requestTestJButton.setBounds(230, 150, 178, 33);
 
+        refreshTestJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        refreshTestJButton.setForeground(new java.awt.Color(4, 65, 96));
         refreshTestJButton.setText("Refresh");
         refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshTestJButtonActionPerformed(evt);
             }
         });
+        add(refreshTestJButton);
+        refreshTestJButton.setBounds(950, 80, 125, 33);
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
+        enterpriseLabel.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        enterpriseLabel.setForeground(new java.awt.Color(0, 0, 0));
+        enterpriseLabel.setText("Enterprise :");
+        add(enterpriseLabel);
+        enterpriseLabel.setBounds(213, 24, 140, 30);
 
+        valueLabel.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        valueLabel.setForeground(new java.awt.Color(0, 0, 0));
         valueLabel.setText("<value>");
+        add(valueLabel);
+        valueLabel.setBounds(330, 30, 170, 26);
 
         organRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -338,54 +444,114 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(organRequestJTable);
 
+        add(jScrollPane2);
+        jScrollPane2.setBounds(230, 370, 860, 130);
+
+        requestOrganJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        requestOrganJButton.setForeground(new java.awt.Color(4, 65, 96));
         requestOrganJButton.setText("Request Organ");
         requestOrganJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestOrganJButtonActionPerformed(evt);
             }
         });
+        add(requestOrganJButton);
+        requestOrganJButton.setBounds(410, 150, 197, 33);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        add(jSeparator1);
+        jSeparator1.setBounds(201, 6, 19, 744);
 
-        profilePicture.setText("User Profile Picture");
-
+        profileName.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        profileName.setForeground(new java.awt.Color(0, 0, 0));
         profileName.setText("UserName");
+        add(profileName);
+        profileName.setBounds(20, 30, 170, 18);
 
+        quals.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        quals.setForeground(new java.awt.Color(0, 0, 0));
         quals.setText("quals");
+        add(quals);
+        quals.setBounds(20, 60, 50, 18);
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("No Upcoming Events");
+        add(jLabel1);
+        jLabel1.setBounds(10, 570, 180, 18);
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("No Upcoming Events");
+        add(jLabel2);
+        jLabel2.setBounds(10, 610, 180, 18);
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("No Upcoming Events");
+        add(jLabel3);
+        jLabel3.setBounds(10, 650, 180, 18);
 
-        lblPatient.setText("Patient:");
+        lblPatient.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPatient.setForeground(new java.awt.Color(0, 0, 0));
+        lblPatient.setText("Field Camp Requests");
+        add(lblPatient);
+        lblPatient.setBounds(230, 510, 190, 18);
 
-        cboAvailablePatients.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboAvailablePatients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboAvailablePatientsActionPerformed(evt);
             }
         });
+        add(cboAvailablePatients);
+        cboAvailablePatients.setBounds(330, 70, 180, 35);
 
+        lblAge.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblAge.setForeground(new java.awt.Color(0, 0, 0));
         lblAge.setText("Age:");
+        add(lblAge);
+        lblAge.setBounds(250, 120, 50, 18);
 
-        lblSex.setText("Sex");
+        lblSex.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblSex.setForeground(new java.awt.Color(0, 0, 0));
+        lblSex.setText("Sex:");
+        add(lblSex);
+        lblSex.setBounds(380, 120, 40, 18);
 
+        lblAgeValue.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblAgeValue.setForeground(new java.awt.Color(0, 0, 0));
         lblAgeValue.setText("Age");
+        add(lblAgeValue);
+        lblAgeValue.setBounds(300, 120, 50, 18);
 
+        lblSexValue.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblSexValue.setForeground(new java.awt.Color(0, 0, 0));
         lblSexValue.setText("Sex");
+        add(lblSexValue);
+        lblSexValue.setBounds(430, 120, 50, 18);
 
-        lblName1.setText("Name");
+        lblName1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblName1.setForeground(new java.awt.Color(0, 0, 0));
+        lblName1.setText("Name:");
+        add(lblName1);
+        lblName1.setBounds(520, 120, 60, 18);
 
+        lblNameValue1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblNameValue1.setForeground(new java.awt.Color(0, 0, 0));
         lblNameValue1.setText("name");
+        add(lblNameValue1);
+        lblNameValue1.setBounds(580, 120, 100, 20);
 
+        viewbtn.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        viewbtn.setForeground(new java.awt.Color(4, 65, 96));
         viewbtn.setText("View Report");
         viewbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewbtnActionPerformed(evt);
             }
         });
+        add(viewbtn);
+        viewbtn.setBounds(920, 150, 170, 33);
 
         CampOrganizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -412,149 +578,37 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(CampOrganizationJTable);
 
+        add(jScrollPane4);
+        jScrollPane4.setBounds(226, 529, 870, 150);
+
+        btnAssign.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnAssign.setForeground(new java.awt.Color(4, 65, 96));
         btnAssign.setText("Assign to Self");
         btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignActionPerformed(evt);
             }
         });
+        add(btnAssign);
+        btnAssign.setBounds(230, 690, 185, 33);
 
-        btnAccept.setText("Accept");
-        btnAccept.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAcceptActionPerformed(evt);
-            }
-        });
+        lblPatient2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPatient2.setForeground(new java.awt.Color(0, 0, 0));
+        lblPatient2.setText("Patient:");
+        add(lblPatient2);
+        lblPatient2.setBounds(220, 80, 70, 18);
 
-        btnDecline.setText("Reject");
-        btnDecline.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeclineActionPerformed(evt);
-            }
-        });
+        lblPatient4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPatient4.setForeground(new java.awt.Color(0, 0, 0));
+        lblPatient4.setText("Test Requests");
+        add(lblPatient4);
+        lblPatient4.setBounds(230, 190, 120, 18);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(profileName)
-                    .addComponent(quals)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblAge)
-                                .addGap(19, 19, 19)
-                                .addComponent(lblAgeValue)
-                                .addGap(82, 82, 82)
-                                .addComponent(lblSex)
-                                .addGap(19, 19, 19)
-                                .addComponent(lblSexValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblPatient)
-                                .addGap(19, 19, 19)
-                                .addComponent(cboAvailablePatients, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(refreshTestJButton))
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblName1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(lblNameValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(256, 256, 256))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(requestTestJButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(requestOrganJButton)
-                                .addGap(176, 176, 176)
-                                .addComponent(viewbtn))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAssign)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnAccept)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDecline)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(profilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(profileName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(quals)
-                .addGap(85, 85, 85)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel3)
-                .addGap(26, 26, 26))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(refreshTestJButton)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPatient)
-                    .addComponent(cboAvailablePatients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAge)
-                    .addComponent(lblAgeValue)
-                    .addComponent(lblSex)
-                    .addComponent(lblSexValue)
-                    .addComponent(lblName1)
-                    .addComponent(lblNameValue1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(requestTestJButton)
-                    .addComponent(requestOrganJButton)
-                    .addComponent(viewbtn))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAssign)
-                    .addComponent(btnAccept)
-                    .addComponent(btnDecline))
-                .addContainerGap(47, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
-        );
+        lblPatient5.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        lblPatient5.setForeground(new java.awt.Color(0, 0, 0));
+        lblPatient5.setText("Organ Requests");
+        add(lblPatient5);
+        lblPatient5.setBounds(230, 350, 150, 18);
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
@@ -564,7 +618,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 //        }
 //        
 //        LabTestWorkRequest testRequest = (LabTestWorkRequest) workRequestJTable.getValueAt(selectedRow,0);
+
 //        
+        if (cboAvailablePatients.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a Patient from drodown");
+            return;
+        }
         UserAccount patientUserAccount = (UserAccount) cboAvailablePatients.getSelectedItem();
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -582,6 +641,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void requestOrganJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestOrganJButtonActionPerformed
         // TODO add your handling code here:
+        if (cboAvailablePatients.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Please select a Patient from drodown");
+            return;
+        }
         UserAccount puser = (UserAccount) cboAvailablePatients.getSelectedItem();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         userProcessContainer.add("RequestOrganJPanel", new RequestOrganJPanel(userProcessContainer, userAccount, enterprise, enterpriseDirectory, ecosystem, network, puser));
@@ -609,23 +672,57 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void viewbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewbtnActionPerformed
         // TODO add your handling code here:
+        
+        
         int selectedRow = workRequestJTable.getSelectedRow();
 
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "No Row Selected, Please select one");
             return;
-        }
-
-        WorkRequest request = (WorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
-
-        String repo_name = ((LabTestWorkRequest) request).getFile_name();
-        if (!repo_name.equals("")) {
-            try {
-                Desktop.getDesktop().open(new java.io.File(repo_name));
-            } catch (Exception e) {
-                e.printStackTrace();
+        } else {
+            
+            
+            
+            JFrame frame = new JFrame("Swing Tester");
+//            JButton button = new JButton("Click Me!");
+//            final JLabel label = new JLabel();
+            
+            LabTestWorkRequest request = (LabTestWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
+            
+            if(!request.getStatus().equalsIgnoreCase("Completed")){
+                JOptionPane.showMessageDialog(null, "Work Request not completed yet !");
+                return;
             }
-
+//StringBuilder detailedReported = (StringBuilder) workRequestPatientJTable.getValueAt(selectedRow, 3);
+//            int result = JOptionPane.showConfirmDialog(frame, detailedReported , "",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+//            if (result == JOptionPane.YES_OPTION) {
+//                
+//            }
+//JOptionPane.show
+            JOptionPane.showMessageDialog(null, request.getDetailedReported() , workRequestJTable.getValueAt(selectedRow, 0).toString() + " * REPORT * ", JOptionPane.OK_OPTION);           
         }
+        
+        populateRequestTable();
+
+//        int selectedRow = workRequestJTable.getSelectedRow();
+
+//        if (selectedRow < 0) {
+//
+//            JOptionPane.showMessageDialog(null, "Please select a LabTest from table !");
+//            return;
+//        }
+
+//        WorkRequest request = (WorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
+//
+//        String repo_name = ((LabTestWorkRequest) request).getFile_name();
+//        if (!repo_name.equals("")) {
+//            try {
+//                Desktop.getDesktop().open(new java.io.File(repo_name));
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
 
     }//GEN-LAST:event_viewbtnActionPerformed
 
@@ -637,40 +734,31 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         WorkRequest request = (WorkRequest) CampOrganizationJTable.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
-        request.setStatus("Pending Confirmation");
+        if (request.getStatus().equalsIgnoreCase("New Request") || request.getStatus().equalsIgnoreCase("Declined")) {
+//            request.setReceiver(userAccount);
+//            request.setStatus("Pending Confirmation");
+            JFrame frame = new JFrame("Please Confirm your availability");
+            int result = JOptionPane.showConfirmDialog(frame, "Please select Accept or Decline.", "Please Confirm your availability",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                request.setReceiver(userAccount);
+                request.setStatus("Accepted");
+                JOptionPane.showMessageDialog(null, "You have Accepted the Field Camp");
+            }else if (result == JOptionPane.NO_OPTION) {
+                request.setStatus("Declined");
+                JOptionPane.showMessageDialog(null, "You have Declined the Field Camp");
+            } else {
+//               request.setReceiver(null);
+//               request.setStatus("New Request");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Can only Assign a 'New Request' or 'Declined' !");
+        }
         populateCampOrganizationJTable();
-
-
     }//GEN-LAST:event_btnAssignActionPerformed
-
-    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = CampOrganizationJTable.getSelectedRow();
-        if (selectedRow < 0) {
-            return;
-        }
-        WorkRequest request = (WorkRequest) CampOrganizationJTable.getValueAt(selectedRow, 0);
-        request.setStatus("Accepted");
-        populateCampOrganizationJTable();
-    }//GEN-LAST:event_btnAcceptActionPerformed
-
-    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = CampOrganizationJTable.getSelectedRow();
-        if (selectedRow < 0) {
-            return;
-        }
-        WorkRequest request = (WorkRequest) CampOrganizationJTable.getValueAt(selectedRow, 0);
-        request.setStatus("Declined");
-        populateCampOrganizationJTable();
-    }//GEN-LAST:event_btnDeclineActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable CampOrganizationJTable;
-    private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnAssign;
-    private javax.swing.JButton btnDecline;
     private javax.swing.JComboBox cboAvailablePatients;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
@@ -687,11 +775,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblName1;
     private javax.swing.JLabel lblNameValue1;
     private javax.swing.JLabel lblPatient;
+    private javax.swing.JLabel lblPatient2;
+    private javax.swing.JLabel lblPatient4;
+    private javax.swing.JLabel lblPatient5;
     private javax.swing.JLabel lblSex;
     private javax.swing.JLabel lblSexValue;
     private javax.swing.JTable organRequestJTable;
     private javax.swing.JLabel profileName;
-    private javax.swing.JLabel profilePicture;
     private javax.swing.JLabel quals;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestOrganJButton;
