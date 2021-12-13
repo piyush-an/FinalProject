@@ -90,126 +90,116 @@ public class CounselorWorkRequestJPanel extends javax.swing.JPanel {
         btnHome = new javax.swing.JButton();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 65, 96));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Counselor Work Request");
+        add(jLabel1);
+        jLabel1.setBounds(6, 16, 890, 33);
 
+        jCheckBox1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox1.setText("1. Behavioural Therapy");
+        add(jCheckBox1);
+        jCheckBox1.setBounds(104, 182, 340, 22);
+        add(txtComments);
+        txtComments.setBounds(104, 470, 200, 30);
 
-        jLabel4.setFont(new java.awt.Font("Shree Devanagari 714", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Comments");
+        add(jLabel4);
+        jLabel4.setBounds(104, 445, 250, 18);
 
-        jLabel3.setFont(new java.awt.Font("Shree Devanagari 714", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Work Request Status Updates");
+        add(jLabel3);
+        jLabel3.setBounds(104, 349, 260, 18);
 
+        btnSubmit.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(4, 65, 96));
         btnSubmit.setText("SUBMIT");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
+        add(btnSubmit);
+        btnSubmit.setBounds(326, 470, 130, 29);
 
         ChangeStatusdd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Work in Progress", "Complete" }));
+        ChangeStatusdd.setSelectedIndex(-1);
         ChangeStatusdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChangeStatusddActionPerformed(evt);
             }
         });
+        add(ChangeStatusdd);
+        ChangeStatusdd.setBounds(104, 374, 170, 30);
 
+        jCheckBox2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox2.setText("2. Emotionally Focused Therapy");
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox2ActionPerformed(evt);
             }
         });
+        add(jCheckBox2);
+        jCheckBox2.setBounds(104, 219, 340, 22);
 
-        jLabel2.setFont(new java.awt.Font("Shree Devanagari 714", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Legal Service Opted:");
+        add(jLabel2);
+        jLabel2.setBounds(104, 157, 200, 18);
 
+        btnHome.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(4, 65, 96));
         btnHome.setText("HOME");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
             }
         });
+        add(btnHome);
+        btnHome.setBounds(6, 61, 130, 29);
 
+        jCheckBox3.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jCheckBox3.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox3.setText("4. Emotionally Focused Therapy");
         jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox3ActionPerformed(evt);
             }
         });
+        add(jCheckBox3);
+        jCheckBox3.setBounds(100, 290, 340, 22);
 
+        jCheckBox4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        jCheckBox4.setForeground(new java.awt.Color(0, 0, 0));
         jCheckBox4.setText("3. Behavioural therapy");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox4ActionPerformed(evt);
             }
         });
+        add(jCheckBox4);
+        jCheckBox4.setBounds(104, 256, 340, 21);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtComments, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ChangeStatusdd, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(31, 31, 31)
-                                .addComponent(btnSubmit))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCheckBox4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCheckBox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-                                .addComponent(jCheckBox2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 546, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnHome)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnHome)
-                .addGap(61, 61, 61)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ChangeStatusdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtComments, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSubmit))
-                .addContainerGap(255, Short.MAX_VALUE))
-        );
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/CounselorRole/CWR.png"))); // NOI18N
+        add(jLabel5);
+        jLabel5.setBounds(360, 60, 900, 600);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -237,6 +227,9 @@ public class CounselorWorkRequestJPanel extends javax.swing.JPanel {
         } else {
             if (!selectedStatus.equalsIgnoreCase(request.getStatus())){
             request.setStatus(selectedStatus);
+            if (selectedStatus.equalsIgnoreCase("Complete")){
+                request.setResolveDate(new Date());
+            }
             request.setMessage(txtComments.getText());
             btnHomeActionPerformed(evt);
             } else {
@@ -289,6 +282,7 @@ public class CounselorWorkRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtComments;
     // End of variables declaration//GEN-END:variables
 }

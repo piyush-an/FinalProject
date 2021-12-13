@@ -109,10 +109,17 @@ public class LegalAdvisorRoleJPanel extends javax.swing.JPanel {
         btnAssignToSelf = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnProcess = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 65, 96));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Legal Advisor");
+        add(jLabel1);
+        jLabel1.setBounds(230, 10, 610, 33);
 
         LegalPaperJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -139,70 +146,59 @@ public class LegalAdvisorRoleJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(LegalPaperJTable);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(80, 60, 910, 166);
+
+        btnHome.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(4, 65, 96));
         btnHome.setText("HOME");
         btnHome.setEnabled(false);
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+        add(btnHome);
+        btnHome.setBounds(80, 10, 89, 29);
 
+        btnAssignToSelf.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnAssignToSelf.setForeground(new java.awt.Color(4, 65, 96));
         btnAssignToSelf.setText("Assign To Self");
         btnAssignToSelf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignToSelfActionPerformed(evt);
             }
         });
+        add(btnAssignToSelf);
+        btnAssignToSelf.setBounds(80, 240, 190, 37);
 
+        btnRefresh.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnRefresh.setForeground(new java.awt.Color(4, 65, 96));
         btnRefresh.setText("Refresh");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
             }
         });
+        add(btnRefresh);
+        btnRefresh.setBounds(870, 10, 109, 29);
 
+        btnProcess.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnProcess.setForeground(new java.awt.Color(4, 65, 96));
         btnProcess.setText("Process");
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessActionPerformed(evt);
             }
         });
+        add(btnProcess);
+        btnProcess.setBounds(300, 240, 130, 37);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnHome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnRefresh))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(btnAssignToSelf, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHome)
-                    .addComponent(btnRefresh))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAssignToSelf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/LegalAdvisorRole/LAR.png"))); // NOI18N
+        add(jLabel2);
+        jLabel2.setBounds(0, 280, 1020, 320);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignToSelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignToSelfActionPerformed
@@ -251,7 +247,7 @@ public class LegalAdvisorRoleJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Request not assigned to you");
             return;
         }
-        if (requestuserAccount.equals(userAccount)){
+        if (requestuserAccount.equals(userAccount) && request.getStatus().equalsIgnoreCase("Assigned")){
         LegalWorkRequestJPanel LegalWorkRequestJPanel = new LegalWorkRequestJPanel(userProcessContainer, request, business, network, userAccount);
         userProcessContainer.add("processWorkRequestJPanel", LegalWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -264,6 +260,10 @@ public class LegalAdvisorRoleJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnProcessActionPerformed
 
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHomeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable LegalPaperJTable;
@@ -273,6 +273,7 @@ public class LegalAdvisorRoleJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnProcess;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

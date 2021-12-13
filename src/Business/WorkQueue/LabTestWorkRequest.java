@@ -21,6 +21,7 @@ public class LabTestWorkRequest extends WorkRequest{
     private ArrayList <String> tests = new ArrayList<String>();
     private String file_name;
     private UserAccount patientAccount;
+    private StringBuilder detailedReported;
 
     public UserAccount getPatientAccount() {
         return patientAccount;
@@ -70,4 +71,14 @@ public class LabTestWorkRequest extends WorkRequest{
     public void setTests(ArrayList<String> tests) {
         this.tests = tests;
     }
+
+    public StringBuilder getDetailedReported() {
+        return detailedReported;
+    }
+
+    public void setDetailedReported(StringBuilder detailedReported) {
+        this.detailedReported = detailedReported;
+    }
+    
+    
 }

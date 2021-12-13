@@ -80,25 +80,48 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
         radYes = new javax.swing.JRadioButton();
         radNo = new javax.swing.JRadioButton();
         cityJComboBox = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setText("Donor work area");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 65, 96));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Donor Work Area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 869, 40));
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 51, 51));
         jLabel6.setText("City:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
 
+        btnSubmit.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(4, 65, 96));
         btnSubmit.setText("Submit");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSubmitActionPerformed(evt);
             }
         });
+        add(btnSubmit, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 160, -1));
 
+        jLabel7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 51, 51));
         jLabel7.setText("Interested in organ donation:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
         buttonGroup1.add(radYes);
+        radYes.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        radYes.setForeground(new java.awt.Color(0, 51, 51));
         radYes.setText("Yes");
+        add(radYes, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 79, -1));
 
         buttonGroup1.add(radNo);
+        radNo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        radNo.setForeground(new java.awt.Color(0, 51, 51));
         radNo.setText("No");
+        add(radNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, 67, -1));
 
         cityJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Boston", "New York" }));
         cityJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -106,49 +129,13 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
                 cityJComboBoxActionPerformed(evt);
             }
         });
+        add(cityJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, 160, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(radYes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(radNo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cityJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
-                        .addComponent(btnSubmit)))
-                .addContainerGap(321, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cityJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(radYes)
-                    .addComponent(radNo))
-                .addGap(41, 41, 41)
-                .addComponent(btnSubmit)
-                .addContainerGap(222, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(4, 65, 96));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/DonorRole/dR.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 869, 500));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -177,6 +164,7 @@ public class DonorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cityJComboBox;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JRadioButton radNo;

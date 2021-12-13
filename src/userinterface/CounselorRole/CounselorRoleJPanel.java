@@ -111,20 +111,32 @@ public class CounselorRoleJPanel extends javax.swing.JPanel {
         EmotionalOrganizationJTable = new javax.swing.JTable();
         btnAssignToSelf = new javax.swing.JButton();
         btnProcess = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnHome.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(4, 65, 96));
         btnHome.setText("HOME");
         btnHome.setEnabled(false);
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 65, 96));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Counselor Advisor");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 888, 33));
 
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(4, 65, 96));
         jButton1.setText("RESET");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 90, -1, -1));
 
         EmotionalOrganizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,57 +163,32 @@ public class CounselorRoleJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(EmotionalOrganizationJTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 888, 280));
+
+        btnAssignToSelf.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnAssignToSelf.setForeground(new java.awt.Color(4, 65, 96));
         btnAssignToSelf.setText("Assign To Self");
         btnAssignToSelf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAssignToSelfActionPerformed(evt);
             }
         });
+        add(btnAssignToSelf, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, -1, 37));
 
+        btnProcess.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnProcess.setForeground(new java.awt.Color(4, 65, 96));
         btnProcess.setText("Process");
         btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProcessActionPerformed(evt);
             }
         });
+        add(btnProcess, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 440, 130, 37));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAssignToSelf, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnHome)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAssignToSelf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnProcess, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(349, Short.MAX_VALUE))
-        );
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(4, 65, 96));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/CounselorRole/CR.png"))); // NOI18N
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -7, 1020, 740));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignToSelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignToSelfActionPerformed
@@ -221,6 +208,7 @@ public class CounselorRoleJPanel extends javax.swing.JPanel {
                     return;
                 }
             }
+//            request.se
             request.setReceiver(userAccount);
             request.setStatus("Assigned");
             populateTable();
@@ -252,7 +240,7 @@ public class CounselorRoleJPanel extends javax.swing.JPanel {
             layout.next(userProcessContainer);
         }
         else {
-            JOptionPane.showMessageDialog(null, "Request not assigned to you");
+            JOptionPane.showMessageDialog(null, "Request is either not assigned or has been completed");
         }
 
     }//GEN-LAST:event_btnProcessActionPerformed
@@ -271,6 +259,7 @@ public class CounselorRoleJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnProcess;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.ButtonGroup therapyTypes;
     // End of variables declaration//GEN-END:variables

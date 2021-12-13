@@ -9,6 +9,8 @@ import userinterface.CounselorRole.*;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import static Business.Enterprise.Enterprise.EnterpriseType.Hospital;
+import Business.Enterprise.HospitalEnterprise;
 import Business.Network.Network;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.HealthCampOrganization;
@@ -16,6 +18,7 @@ import Business.Organization.OrganTissueDonationOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.MedicalFieldCampWorkRequest;
+import Business.WorkQueue.TrailWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -61,32 +64,110 @@ public class CampOrganizerRoleJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) CampOrganizationJTable.getModel();
         model.setRowCount(0);
 
-//        Organization org = null;
-try {
-        for (Enterprise enterpriseEach : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (enterpriseEach.getTypeof().equalsIgnoreCase("Hospital")) {
-                for (Organization OrganizationEach : enterpriseEach.getOrganizationDirectory().getOrganizationList()) {
-                    if (OrganizationEach.getTypeof().equalsIgnoreCase("DoctorOrganization")) {
-                        for (WorkRequest request : OrganizationEach.getWorkQueue().getWorkRequestList()) {
-                            Object[] row = new Object[7];
-                            row[0] = request;
-                            row[1] = ((MedicalFieldCampWorkRequest) request).getFieldCampName();
-                            row[2] = ((MedicalFieldCampWorkRequest) request).getVenue();
-                            row[3] = ((MedicalFieldCampWorkRequest) request).getStartDate();
-                            row[4] = ((MedicalFieldCampWorkRequest) request).getEndDate();
-                            row[5] = request.getStatus();
-                            row[6] = request.getReceiver();
-                            model.addRow(row);
+        try {
+//            for (Network network : system.getNetworkList()) {
+
+//                HospitalEnterprise enterpriseloop1 = (HospitalEnterprise) network.getEnterpriseDirectory().getEnterpriseList().get(1);
+            for (Enterprise enterpriseloop : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (enterpriseloop.getEnterpriseType().equals(Hospital)) {
+                    for (Organization org : enterpriseloop.getOrganizationDirectory().getOrganizationList()) {
+                        for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+                            if (request instanceof MedicalFieldCampWorkRequest) {
+                                Object[] row = new Object[7];
+                                row[0] = request;
+                                row[1] = ((MedicalFieldCampWorkRequest) request).getFieldCampName();
+                                row[2] = ((MedicalFieldCampWorkRequest) request).getVenue();
+                                row[3] = ((MedicalFieldCampWorkRequest) request).getStartDate();
+                                row[4] = ((MedicalFieldCampWorkRequest) request).getEndDate();
+                                row[5] = request.getStatus();
+                                row[6] = request.getReceiver();
+                                model.addRow(row);
+                            }
                         }
                     }
                 }
             }
 
+        } catch (Exception e) {
         }
-}
-catch (Exception e){
-    
-}
+
+//        try {
+//            for (Network network : system.getNetworkList()) {
+//                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+//                    for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//                        for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+//                            Object[] row = new Object[8];
+//                            row[0] = request;
+//                            row[1] = request.getStatus();
+//                            row[2] = request.getSender();
+//                            row[3] = request.getRequestDate();
+//                            row[4] = request.getResolveDate();
+//                            row[5] = request.getMessage();
+//                            row[6] = network;
+//                            row[7] = org;
+//                            model.addRow(row);
+//                        }
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//        }
+//        Organization org = null;
+//        try {
+//            for (Network networkEach : system.getNetworkList()) {
+//                    try {
+////            for (Network network : system.getNetworkList()) {
+//
+////                HospitalEnterprise enterpriseloop1 = (HospitalEnterprise) network.getEnterpriseDirectory().getEnterpriseList().get(1);
+//            for (Enterprise enterpriseloop : network.getEnterpriseDirectory().getEnterpriseList()) {
+//                if (enterpriseloop.getEnterpriseType().equals(Hospital)) {
+//                    for (Organization org : enterpriseloop.getOrganizationDirectory().getOrganizationList()) {
+//                        for (WorkRequest request : org.getWorkQueue().getWorkRequestList()) {
+//                            if (request instanceof MedicalFieldCampWorkRequest) {
+//                                Object[] row = new Object[7];
+//                                row[0] = request;
+//                                row[1] = ((MedicalFieldCampWorkRequest) request).getFieldCampName();
+//                                row[2] = ((MedicalFieldCampWorkRequest) request).getVenue();
+//                                row[3] = ((MedicalFieldCampWorkRequest) request).getStartDate();
+//                                row[4] = ((MedicalFieldCampWorkRequest) request).getEndDate();
+//                                row[5] = request.getStatus();
+//                                row[6] = request.getReceiver();
+//                                String result = ((TrailWorkRequest) request).getMatchResult();
+////                row[4] = result == null ? "Waiting" : result;
+//                                model.addRow(row);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//        }
+//            for (Enterprise enterpriseLoop : network.getEnterpriseDirectory().getEnterpriseList()) {
+//                System.out.println("enterpriseLoop :" + enterpriseLoop);
+//                if (enterpriseLoop.getTypeof().equalsIgnoreCase("Hospital")) {
+//                    for (Organization OrganizationLoop : enterpriseLoop.getOrganizationDirectory().getOrganizationList()) {
+//                        if (OrganizationLoop.getTypeof().equalsIgnoreCase("DoctorOrganization")) {
+//                            for (WorkRequest request : OrganizationLoop.getWorkQueue().getWorkRequestList()) {
+//                                Object[] row = new Object[7];
+//                                row[0] = request;
+//                                row[1] = ((MedicalFieldCampWorkRequest) request).getFieldCampName();
+//                                row[2] = ((MedicalFieldCampWorkRequest) request).getVenue();
+//                                row[3] = ((MedicalFieldCampWorkRequest) request).getStartDate();
+//                                row[4] = ((MedicalFieldCampWorkRequest) request).getEndDate();
+//                                row[5] = request.getStatus();
+//                                row[6] = request.getReceiver();
+//                                model.addRow(row);
+//                            }
+//                        }
+//                    }
+//                }
+//
+//            }
+//            }
+//        } catch (Exception e) {
+//            
+//
+//        }
 //        for (Organization organizationEach : enterprise.getOrganizationDirectory().getOrganizationList()) {
 //            if (organizationEach instanceof DoctorOrganization) {
 //                org = organizationEach;
@@ -126,24 +207,25 @@ catch (Exception e){
         therapyTypes = new javax.swing.ButtonGroup();
         btnHome = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         CampOrganizationJTable = new javax.swing.JTable();
         btnCreateCampEvent = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnHome.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(60, 63, 65));
         btnHome.setText("HOME");
         btnHome.setEnabled(false);
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 61, 160, -1));
 
-        jLabel1.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(60, 63, 65));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Medical Field Camps");
-
-        jButton1.setText("RESET");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 888, 33));
 
         CampOrganizationJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,50 +252,22 @@ catch (Exception e){
         });
         jScrollPane1.setViewportView(CampOrganizationJTable);
 
-        btnCreateCampEvent.setText("Create Camp");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 108, 888, 201));
+
+        btnCreateCampEvent.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnCreateCampEvent.setForeground(new java.awt.Color(60, 63, 65));
+        btnCreateCampEvent.setText("CREATE CAMP");
         btnCreateCampEvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateCampEventActionPerformed(evt);
             }
         });
+        add(btnCreateCampEvent, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 319, 190, 37));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnHome)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnCreateCampEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(14, 14, 14))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnHome)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnCreateCampEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(356, Short.MAX_VALUE))
-        );
+        jLabel2.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/CampOrganizerRole/Medical-Explainer-min.gif"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 390, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateCampEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCampEventActionPerformed
@@ -248,19 +302,13 @@ catch (Exception e){
 //        populateTable();
     }//GEN-LAST:event_btnCreateCampEventActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        populateTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable CampOrganizationJTable;
     private javax.swing.JButton btnCreateCampEvent;
     private javax.swing.JButton btnHome;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.ButtonGroup therapyTypes;
     // End of variables declaration//GEN-END:variables

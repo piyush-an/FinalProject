@@ -15,9 +15,15 @@ import Business.WorkQueue.MedicalFieldCampWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -44,6 +50,7 @@ public class DashboardJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblDashboard.getModel();
 
         model.setRowCount(0);
+        SimpleDateFormat datemMonth = new SimpleDateFormat("MMM dd, yyyy");
         try {
             for (Network network : system.getNetworkList()) {
                 for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -52,9 +59,17 @@ public class DashboardJPanel extends javax.swing.JPanel {
                             Object[] row = new Object[8];
                             row[0] = request;
                             row[1] = request.getStatus();
-                            row[2] = request.getSender();
-                            row[3] = request.getRequestDate();
-                            row[4] = request.getResolveDate();
+                            row[2] = request.getReceiver();
+//                            row[3] = request.getRequestDate();
+//                            row[4] = request.getResolveDate();
+                            row[3] = datemMonth.format(request.getRequestDate());
+                            if (request.getResolveDate() == null) {
+                                row[4] = request.getResolveDate();
+                            } else {
+                                row[4] = datemMonth.format(request.getResolveDate());  // ISSUE 1 NULL Return
+
+                            }
+//                            row[4] = datemMonth.format(request.getResolveDate() == null ? "" : request.getResolveDate());  // ISSUE 1 NULL Return
                             row[5] = request.getMessage();
                             row[6] = network;
                             row[7] = org;
@@ -76,32 +91,38 @@ public class DashboardJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         btnHome = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDashboard = new javax.swing.JTable();
         btnDelete = new javax.swing.JButton();
-        btnDeleteAll = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Dashboard");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnHome.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(4, 65, 96));
         btnHome.setText("HOME");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHomeActionPerformed(evt);
             }
         });
+        add(btnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 130, 40));
 
+        btnRefresh.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnRefresh.setForeground(new java.awt.Color(4, 65, 96));
         btnRefresh.setText("REFRESH");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRefreshActionPerformed(evt);
             }
         });
+        add(btnRefresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 60, 160, 40));
 
+        tblDashboard.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         tblDashboard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -127,57 +148,31 @@ public class DashboardJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblDashboard);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 1000, 560));
+
+        btnDelete.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(4, 65, 96));
         btnDelete.setText("DELETE");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, 160, 40));
 
-        btnDeleteAll.setText("DELETE ALL");
-        btnDeleteAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteAllActionPerformed(evt);
-            }
-        });
+        jLabel2.setBackground(new java.awt.Color(4, 65, 96));
+        jLabel2.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(4, 65, 96));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/SystemAdminWorkArea/dashb.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1010, 590));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDeleteAll, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(46, 46, 46))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHome)
-                    .addComponent(btnRefresh)
-                    .addComponent(btnDelete)
-                    .addComponent(btnDeleteAll))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
-        );
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(4, 65, 96));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Dashboard");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 720, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -192,7 +187,7 @@ public class DashboardJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
-        sysAdminwjp.populateTree();
+//        sysAdminwjp.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
 
@@ -200,55 +195,47 @@ public class DashboardJPanel extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        
+
         int selectedRow = tblDashboard.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "No Row Selected, Please select one");
             return;
-        }
-        WorkRequest workRequestToDelete = (WorkRequest) tblDashboard.getValueAt(selectedRow, 0);
-        Network networkToDeleteFrom = (Network) tblDashboard.getValueAt(selectedRow, 6);
-        Organization organizationToDeleteFrom = (Organization) tblDashboard.getValueAt(selectedRow, 7);
-        if (organizationToDeleteFrom != null) {
-           
-            if (organizationToDeleteFrom.getWorkQueue().getWorkRequestList().remove(workRequestToDelete)){
-                JOptionPane.showMessageDialog(null, "Request Deleted");
-                populateTable();
-            } else {
-                JOptionPane.showMessageDialog(null, "Request could NOT be Delete");
-            }
-            
-        }
-        
-        populateTable();
-        
-    }//GEN-LAST:event_btnDeleteActionPerformed
+        } else {
 
-    private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAllActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblDashboard.getModel();
-        for (int selectedRow=0; selectedRow < model.getRowCount(); selectedRow++){
-            
-        WorkRequest workRequestToDelete = (WorkRequest) tblDashboard.getValueAt(selectedRow, 0);
-        Network networkToDeleteFrom = (Network) tblDashboard.getValueAt(selectedRow, 6);
-        Organization organizationToDeleteFrom = (Organization) tblDashboard.getValueAt(selectedRow, 7);
-            
-        organizationToDeleteFrom.getWorkQueue().getWorkRequestList().remove(workRequestToDelete);
-        
-        
+            JFrame frame = new JFrame("Swing Tester");
+            int result = JOptionPane.showConfirmDialog(frame, "Sure? You want to Delete?", "Delete Work Request",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+//                label.setText("You selected: Yes");
+                WorkRequest workRequestToDelete = (WorkRequest) tblDashboard.getValueAt(selectedRow, 0);
+//                Network networkToDeleteFrom = (Network) tblDashboard.getValueAt(selectedRow, 6);
+                Organization organizationToDeleteFrom = (Organization) tblDashboard.getValueAt(selectedRow, 7);
+                if (organizationToDeleteFrom != null) {
+
+                    if (organizationToDeleteFrom.getWorkQueue().getWorkRequestList().remove(workRequestToDelete)) {
+                        JOptionPane.showMessageDialog(null, "Request '" + String.valueOf(workRequestToDelete.getWorkID()) + "' Deleted");
+                        populateTable();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Request could NOT be Delete");
+                    }
+
+                }
+            }
+
         }
-        
-        
-        
-    }//GEN-LAST:event_btnDeleteAllActionPerformed
+
+        populateTable();
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDeleteAll;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnRefresh;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDashboard;
     // End of variables declaration//GEN-END:variables

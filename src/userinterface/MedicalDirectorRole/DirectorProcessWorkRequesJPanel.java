@@ -56,12 +56,13 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
     public void populateTable() {
         DefaultTableModel dtm = (DefaultTableModel) OrganAvailJTable.getModel();
         dtm.setRowCount(0);
-        System.out.println("Toget Donor" + system.getDonorDirectory());
+//        System.out.println("Toget Donor" + system.getDonorDirectory());
         for (Donor d : system.getDonorDirectory()) {
             for (String s : d.getOrgans()) {
-                Object[] row = new Object[5];
-                row[0] = s;
+                Object[] row = new Object[3];
+                row[0] = d;
                 row[1] = d.getBloodGroup();
+                row[2] = s;
                 dtm.addRow(row);
 
             }
@@ -81,44 +82,31 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        submitJButton = new javax.swing.JButton();
-        backJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         OrganAvailJTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        resultJTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        backJButton = new javax.swing.JButton();
+        submitJButton = new javax.swing.JButton();
 
-        submitJButton.setText("Match Organ");
-        submitJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitJButtonActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        backJButton.setText("Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         OrganAvailJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "OrganType", "Blood Group"
+                "Doner Name", "OrganType", "Blood Group"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(OrganAvailJTable);
@@ -128,57 +116,74 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(backJButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(submitJButton)))
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backJButton)
-                    .addComponent(submitJButton))
-                .addGap(34, 34, 34))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Result");
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 65, 96));
+        jLabel1.setText("DONER DATABASE");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/MedicalDirectorRole/bg1.png"))); // NOI18N
+
+        backJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(4, 65, 96));
+        backJButton.setText("HOME");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
+
+        submitJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        submitJButton.setForeground(new java.awt.Color(4, 65, 96));
+        submitJButton.setText("Match Organ");
+        submitJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitJButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(submitJButton)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2))
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel1)
-                .addGap(53, 53, 53)
-                .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(585, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(backJButton)
+                        .addGap(79, 79, 79)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(resultJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(432, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 131, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 131, Short.MAX_VALUE)))
+                    .addComponent(backJButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(submitJButton))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,17 +208,23 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
 
                 if (s.equalsIgnoreCase(request.getOrgan().getOrgan_type()) && d1.getBloodGroup().equals(request.getOrgan().getBlood_type())) {
                     d1.getOrgans().remove(s);
+                    
+//                    System.out.println("PIYUSH || Donor Found - " + d1.getName());
 
                     request.setStatus("Match Found");
+                    request.setResolveDate(new Date());
                     /// Piyush -- Start Legal workflows
-
+                    
+                    
                     raiseLegalRequest(d1, request);
                     raiseEmotionalRequest(d1, request);
 
                     match = true;
                     JOptionPane.showMessageDialog(null, "An Organ Match Found");
-                    break;
+                    return;
                 }
+                
+                
 
             }
 
@@ -254,11 +265,10 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
             LegalOrganization + 301
             PatientOrganization	+ 
             
-            */
+             */
             try {
-            legalwf.setWorkID(org.getWorkQueue().getWorkRequestList().get(org.getWorkQueue().getWorkRequestList().size()-1).getWorkID()+1);
-            }
-            catch (Exception e){
+                legalwf.setWorkID(org.getWorkQueue().getWorkRequestList().get(org.getWorkQueue().getWorkRequestList().size() - 1).getWorkID() + 1);
+            } catch (Exception e) {
                 legalwf.setWorkID(301);
             }
             legalwf.setStatus("New Request");
@@ -272,9 +282,8 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
             userAccount.getWorkQueue().getWorkRequestList().add(legalwf);
         }
     }
-    
-    
-        private void raiseEmotionalRequest(Donor userdonor, TrailWorkRequest userrequest) {
+
+    private void raiseEmotionalRequest(Donor userdonor, TrailWorkRequest userrequest) {
 
         Organization org = null;
         for (Network eachnetwork : system.getNetworkList()) {
@@ -292,11 +301,10 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
 
         if (org != null) {
             EmotionalWorkRequest emotionalwf = new EmotionalWorkRequest();
-            
+
             try {
-            emotionalwf.setWorkID(org.getWorkQueue().getWorkRequestList().get(org.getWorkQueue().getWorkRequestList().size()-1).getWorkID()+1);
-            }
-            catch (Exception e){
+                emotionalwf.setWorkID(org.getWorkQueue().getWorkRequestList().get(org.getWorkQueue().getWorkRequestList().size() - 1).getWorkID() + 1);
+            } catch (Exception e) {
                 emotionalwf.setWorkID(401);
             }
             emotionalwf.setStatus("New Request");
@@ -315,9 +323,9 @@ public class DirectorProcessWorkRequesJPanel extends javax.swing.JPanel {
     private javax.swing.JTable OrganAvailJTable;
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField resultJTextField;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
 }

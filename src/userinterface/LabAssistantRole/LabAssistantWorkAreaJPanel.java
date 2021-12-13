@@ -41,7 +41,7 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.business = business;
         this.labOrganization = (LabOrganization) organization;
-        profilepic();
+        //profilepic();
         username.setText(userAccount.getUsername());
         qualifications.setText(userAccount.getQualifications());
 
@@ -79,11 +79,11 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
 
     }
 
-    public void profilepic() {
-        ImageIcon image_path = new ImageIcon(userAccount.getProfile());
-        profilePicture.setIcon(image_path);
-
-    }
+//    public void profilepic() {
+//        ImageIcon image_path = new ImageIcon(userAccount.getProfile());
+//        profilePicture.setIcon(image_path);
+//
+//    }
 
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
@@ -121,15 +121,15 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         processJButton = new javax.swing.JButton();
         refreshJButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        profilePicture = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         qualifications = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(null);
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -166,55 +166,87 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             workRequestJTable.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(255, 90, 430, 96));
+        add(jScrollPane1);
+        jScrollPane1.setBounds(255, 90, 670, 96);
 
+        assignJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        assignJButton.setForeground(new java.awt.Color(4, 65, 96));
         assignJButton.setText("Assign to me");
         assignJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignJButtonActionPerformed(evt);
             }
         });
-        add(assignJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+        add(assignJButton);
+        assignJButton.setBounds(590, 210, 180, 33);
 
+        processJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        processJButton.setForeground(new java.awt.Color(4, 65, 96));
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processJButtonActionPerformed(evt);
             }
         });
-        add(processJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 210, -1, -1));
+        add(processJButton);
+        processJButton.setBounds(788, 210, 130, 33);
 
+        refreshJButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        refreshJButton.setForeground(new java.awt.Color(4, 65, 96));
         refreshJButton.setText("Refresh");
         refreshJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshJButtonActionPerformed(evt);
             }
         });
-        add(refreshJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 40, -1, -1));
+        add(refreshJButton);
+        refreshJButton.setBounds(788, 30, 130, 33);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 60, 510));
+        add(jSeparator1);
+        jSeparator1.setBounds(210, 0, 60, 510);
 
-        profilePicture.setText("User profile Picture");
-        add(profilePicture, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 160, 180));
-
+        username.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        username.setForeground(new java.awt.Color(4, 65, 96));
         username.setText("User Name");
-        add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        add(username);
+        username.setBounds(10, 20, 210, 23);
 
+        qualifications.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        qualifications.setForeground(new java.awt.Color(4, 65, 96));
         qualifications.setText("quals");
-        add(qualifications, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        add(qualifications);
+        qualifications.setBounds(20, 50, 90, 23);
 
+        jLabel4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(4, 65, 96));
         jLabel4.setText("Upcoming Events");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, -1, -1));
+        add(jLabel4);
+        jLabel4.setBounds(10, 110, 180, 23);
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(4, 65, 96));
         jLabel1.setText("No Upcoming Events");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, -1, -1));
+        add(jLabel1);
+        jLabel1.setBounds(10, 140, 209, 23);
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(4, 65, 96));
         jLabel2.setText("No Upcoming Events");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, -1, -1));
+        add(jLabel2);
+        jLabel2.setBounds(10, 170, 209, 23);
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(4, 65, 96));
         jLabel3.setText("No Upcoming Events");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, -1, 20));
+        add(jLabel3);
+        jLabel3.setBounds(10, 200, 209, 20);
+
+        jLabel5.setFont(new java.awt.Font("Shree Devanagari 714", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/LabAssistantRole/LA.png"))); // NOI18N
+        add(jLabel5);
+        jLabel5.setBounds(0, -40, 1010, 870);
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
@@ -224,14 +256,25 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
         if (selectedRow < 0) {
             return;
         }
-
+//        WorkRequest request = (WorkRequest) LegalPaperJTable.getValueAt(selectedRow, 0);
         WorkRequest request = (WorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
+        if (request.getStatus().equalsIgnoreCase("New Request") && (request.getReceiver() == null) ) {
+        for (WorkRequest requestCheck : labOrganization.getWorkQueue().getWorkRequestList()) {
+                if ( requestCheck.getReceiver() != null && requestCheck.getReceiver().equals(userAccount) && (requestCheck.getStatus().equalsIgnoreCase("Assigned") || requestCheck.getStatus().equalsIgnoreCase("Processing")) ){
+//                if(requestCheck.getReceiver() != null && requestCheck.getReceiver().equals(userAccount) && (requestCheck.getStatus().equalsIgnoreCase("Assigned") || requestCheck.getStatus().equalsIgnoreCase("Work In Progress"))){
+                    JOptionPane.showMessageDialog(null, "User already working on a work request");
+                    return;
+                }
+            }
         request.setReceiver(userAccount);
         request.setStatus("Assigned");
         JOptionPane.showMessageDialog(null, "Request Assigned !");
         
-        populateTable();
-
+        populateTable(); }
+        else {
+            JOptionPane.showMessageDialog(null, "This request is already being handled");
+        }
+populateTable();
     }//GEN-LAST:event_assignJButtonActionPerformed
 
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
@@ -241,11 +284,22 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         LabTestWorkRequest request = (LabTestWorkRequest) workRequestJTable.getValueAt(selectedRow, 0);
+        
+        UserAccount requestuserAccount = request.getReceiver();
+        if(requestuserAccount == null){
+            JOptionPane.showMessageDialog(null, "Request not assigned to you");
+            return;
+        } 
+        if (requestuserAccount.equals(userAccount) && (request.getStatus().equalsIgnoreCase("Assigned") || request.getStatus().equalsIgnoreCase("Processing"))){
+        
         request.setStatus("Processing");
         ProcessWorkRequestJPanel processWorkRequestJPanel = new ProcessWorkRequestJPanel(userProcessContainer, request);
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        layout.next(userProcessContainer); }
+        else {
+            JOptionPane.showMessageDialog(null, "Request not assigned to you");
+        }
 
     }//GEN-LAST:event_processJButtonActionPerformed
 
@@ -259,10 +313,10 @@ public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton processJButton;
-    private javax.swing.JLabel profilePicture;
     private javax.swing.JLabel qualifications;
     private javax.swing.JButton refreshJButton;
     private javax.swing.JLabel username;
